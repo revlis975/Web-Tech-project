@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Customer's Portal</title>
+  <style type="text/css">
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+.box {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px;
+    padding-bottom: 20px;
+    margin: 90px 0;
+    width: 450px;
+    height: 900px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+.box h4 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  font-size: 27px;
+  text-align: center;
+}
+
+.box .user-box {
+  position: relative;
+}
+
+.box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+select option {
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+select {
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.box .user-box input:focus ~ label,
+.box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 0 20px 0 0; 
+}
+
+input[type=submit]:hover
+  {
+    cursor: pointer;
+    background-color: #E0E0E0;
+  }
+
+button {
+
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    /*-webkit-border-radius: 5px;*/
+    border-radius: 5px;
+    margin: 0 20px 0 0; 
+}
+
+button:hover
+{
+  cursor: pointer;
+  background-color: #E0E0E0;
+}
+  </style>
+
+
+<body>
+  <div id="bg"> <img src="../Project/img/custbg2.jpg" alt=""> </div>
+  <div class="box">
+    <h4>ENTER CUSTOMER DETAILS</h4>
+    <form action="./php/upload.php" method="POST">
+      <div class="user-box">
+        <label for="name">Customer Name </label><br><br>
+        
+        <input type="text" id="name" name="name" autofocus required>
+        
+        <br/> </div>
+      <div class="user-box">
+        <label for="item_type">Item Type</label>
+        <br><br><br>
+        <select name="item_type" id="item_type" style="width:160px">
+          <option value="Bags">Bags</option>
+          <option value="Stationary">Stationary</option>
+          <option value="Books">Books</option>
+        </select>
+        <br>
+        <br> </div>
+      <div class="user-box">
+        <label for="payment_method">Select Payment Method </label>
+        <br><br><br>
+        <select name="payment_method" id="payment_method" style="width:160px">
+          <option value="cash">Cash</option>
+          <option value="UPI">UPI</option>
+          <option value="netbanking">Netbanking</option>
+          <option value="debit">Debit Card</option>
+          <option value="credit">Credit Card</option>
+        </select> <br>
+        <br> </div>
+      <div class="user-box">
+        <label for="barcode">Barcode No.</label>
+        <br><br>
+        <input type="number" id="barcode" name="barcode" required>
+    
+        <br> </div>
+      <div class="user-box">
+        <label for="price">Total Price </label>
+        <br><br>
+        <input type="number" id="price" name="price" required>
+        <br> </div>
+
+      <div class="user-box">
+        <label for="quan">Quantity</label>
+        <br><br>
+        <input type="number" id="quan" name="quan" required>
+        <br> </div>
+
+      <div class="user-box">
+        <label for="cust_ID">Enter Customer ID </label>
+        <br><br>
+        <input type="number" id="cust_ID" name="cust_ID" required>
+        <br>
+        <br> </div>
+      
+      <!-- <div class="btn"> -->
+        <input type="submit" name="button1" value="Upload">
+        <button type="submit" formaction="./php/check.php">Check Availability</button>
+        <button type="submit" formaction="../Project/homepage.html" style="width: 50px;  padding-top: 18px; padding-bottom: 8px;"><img src="../Project/img/home.png" style="height: 2%; width: 3.6%; position: absolute; top: 865px; left: 319px;"></button>
+        
+        <!-- <input type="image" src="home.png"> -->
+      <!-- </div> -->
+        
+        
+    </form>
+  </div>
+</body>
+
+</html>

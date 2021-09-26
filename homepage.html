@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>SuperStore</title>
+</head>
+
+<body>
+    <nav class="navbar background">
+        <ul class="nav-list">
+            <div class="logo"><img src="img/logo.jfif" alt="logo"></div>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+
+    </nav>
+    <section class="background firstSection" id="home">
+        <div class="box-main">
+            <div class="firstHalf">
+                <p class="text-big">The Best Way To Buy All Your Favourite Books</p>
+                <p class="text-small">This is your bookstore. You can order anything you want ranging from as small as a
+                    pencil to your favourite Harry Potter book. You will get your item in the safest way and you don't
+                    have
+                    to leave the comfort of your house to do so.</p>
+            </div>
+            <div class="secondHalf">
+                <img src="https://source.unsplash.com/900x900/?books,library" alt="book-img">
+            </div>
+        </div>
+    </section>
+    <h2 class="question" id="services">Are You...</h2>
+    <section class="section-left">
+        <div class="option">
+            <button class="seller btn"><a href="../Project/s.html">A Seller/Owner</a></button>
+
+        </div>
+    </section>
+    <section class="section-right">
+        <div class="option">
+            <button class="customer btn"><a href="../Project/c.html">A Customer</a></button>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <h3 class="text-center">Contact Us</h3>
+        <form action="./php/contact.php" method="post">
+            <div class="form">
+                <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your Name">
+                <input class="form-input" type="text" name="phone" id="phone" placeholder="Enter Your Phone">
+                <input class="form-input" type="email" name="email" id="email" placeholder="Enter Your Email">
+                <textarea class="form-input" name="concern" id="text" cols="30" rows="10"
+                    placeholder="Elaborate Your Concern"></textarea>
+                <button class="btn-submit" type="submit" name="submit" id="Submit" value="Submit" >Submit</button>
+            </div>
+        </form>
+        </div>
+    </section>
+
+    <h2 class="about-heading">Contributors</h2>
+    <section class="about" id="about">
+        <section class="sec-left">
+
+            <div class="dp"><img src="../Project/img/amrit-dp.jpg" alt=""></div>
+            <div class="paras">
+                <p class="txt">Amrit Kharbanda<br>Registeration No. - 199303213<br>B.Tech CSE MUJ</p>
+            </div>
+        </section>
+        <section class="sec-mid">
+
+            <div class="dp"><img src="../Project/img/kushagra-dp.jpg" alt=""></div>
+            <div class="paras">
+                <p class="txt">Kushagra Srivastava<br>Registeration No. - 199301120<br>B.Tech CSE MUJ</p>
+            </div>
+        </section>
+        <section class="sec-right">
+
+            <div class="dp"><img src="../Project/img/aryan-dp.jpg" alt=""></div>
+            <div class="paras">
+                <p class="txt">Aryan Gupta<br>Registeration No. - 199301088<br>B.Tech CSE MUJ</p>
+            </div>
+        </section>
+    </section>
+</body>
+
+</html>
