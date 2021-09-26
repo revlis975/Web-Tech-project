@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Seller's Portal</title>
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
+
+        body {
+            /*background: #080808;*/
+            background: rgba(0, 0, 0, 0.9);
+            color: #333;
+            font-family: "Raleway";
+        }
+
+        body h1 {
+            text-align: center;
+            color: #428bff;
+            font-weight: 300;
+            padding: 40px 0 40px 0;
+            margin: 0;
+        }
+
+        .tabs {
+            left: 50%;
+            transform: translateX(-50%);
+            position: relative;
+            background: #E8E8E8;
+            padding: 50px;
+            padding-bottom: 80px;
+            width: 70%;
+            height: 600px;
+            border-radius: 15px;
+        }
+
+        .tabs input[name=tab-control] {
+            display: none;
+        }
+
+        .tabs .content section h2,
+        .tabs ul li label {
+            font-family: "Montserrat";
+            font-weight: bold;
+            font-size: 18px;
+            color: #428bff;
+        }
+
+        .tabs ul {
+            list-style-type: none;
+            padding-left: 0;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .tabs ul li {
+            box-sizing: border-box;
+            flex: 1;
+            width: 33%;
+            text-align: center;
+        }
+
+        .tabs ul li label {
+            transition: all 0.3s ease-in-out;
+            color: #484848;
+            padding: 5px auto;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tabs ul li label br {
+            display: none;
+        }
+
+        .tabs ul li label:hover,
+        .tabs ul li label:focus,
+        .tabs ul li label:active {
+            outline: 0;
+            color: #bec5cf;
+        }
+
+        .tabs .slider {
+            position: relative;
+            width: 33.33%;
+            transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+        }
+
+        .tabs .slider .indicator {
+            position: relative;
+            width: 100px;
+            max-width: 100%;
+            margin: 0 auto;
+            height: 4px;
+            background: #428bff;
+            border-radius: 6px;
+        }
+
+        .tabs .content {
+            margin-top: 30px;
+        }
+
+        .tabs .content section {
+            display: none;
+            -webkit-animation-name: content;
+            animation-name: content;
+            -webkit-animation-direction: normal;
+            animation-direction: normal;
+            -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+            line-height: 1.4;
+        }
+
+        .tabs .content section h2 {
+            color: #428bff;
+            display: none;
+        }
+
+        .tabs .content section h2::after {
+            content: "";
+            position: relative;
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: #428bff;
+            margin-top: 5px;
+            left: 1px;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+            cursor: default;
+            color: #428bff;
+        }
+
+        @media (max-width: 600px) {
+            .tabs input[name=tab-control]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+                background: rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(1):checked~.slider {
+            transform: translateX(0%);
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(1):checked~.content>section:nth-child(1) {
+            display: block;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+            cursor: default;
+            color: #428bff;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(2):checked~ul>li:nth-child(2)>label svg {
+            fill: #428bff;
+        }
+
+        @media (max-width: 600px) {
+            .tabs input[name=tab-control]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+                background: rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(2):checked~.slider {
+            transform: translateX(100%);
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(2):checked~.content>section:nth-child(2) {
+            display: block;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+            cursor: default;
+            color: #428bff;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(3):checked~ul>li:nth-child(3)>label svg {
+            fill: #428bff;
+        }
+
+        @media (max-width: 600px) {
+            .tabs input[name=tab-control]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+                background: rgba(0, 0, 0, 0.08);
+            }
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(3):checked~.slider {
+            transform: translateX(200%);
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(3):checked~.content>section:nth-child(3) {
+            display: block;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(4):checked~ul>li:nth-child(4)>label {
+            cursor: default;
+            color: #428bff;
+        }
+
+        .tabs input[name=tab-control]:nth-of-type(4):checked~ul>li:nth-child(4)>label svg {
+            fill: #428bff;
+        }
+
+        .bags_tab,
+        .books_tab,
+        .stat_tab {
+            align-items: center;
+            color: rgba(0, 0, 0, .8);
+            display: grid;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            height: 100vh;
+            justify-items: center;
+        }
+
+        .signup-container {
+            display: grid;
+            grid-template-areas: "left right";
+            max-width: 900px;
+        }
+
+        .left-container {
+            background: #807182;
+            padding: 40px 0 0 0;
+            position: relative;
+            text-align: center;
+            width: 300px;
+        }
+
+        .left-container .bags,
+        .books {
+            bottom: -5px;
+            position: absolute;
+            text-align: center;
+        }
+
+        .left-container img {
+            width: 70%;
+        }
+
+        .right-container {
+            background: #f9c7c2;
+            display: grid;
+            grid-template-areas: "."".";
+            width: 500px;
+        }
+
+        .head {
+            color: rgba(0, 0, 0, .8);
+        }
+
+        .right-container h1 {
+            font-size: 28px;
+            color: rgba(0, 0, 0, .8);
+        }
+
+        .right-container .set {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .right-container input {
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: 4px;
+            height: 38px;
+            line-height: 38px;
+            padding-left: 8px;
+        }
+
+        .right-container input,
+        .right-container label {
+            color: rgba(0, 0, 0, .8);
+        }
+
+        .right-container header {
+            padding: 40px;
+        }
+
+        input[type=submit] {
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            opacity: 1;
+            background-color: #E0E0E0;
+        }
+
+        .right-container label,
+        .right-container input {
+            width: 176px;
+        }
+
+        .right-container .type_b .radio-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .s_name label,
+        .s_MRP label,
+        .brand_s label,
+        .s_type label,
+        .barcode_s label,
+        .quantity_s label,
+        .barcode_bo label,
+        .quantity_bo label,
+        .brand_b label,
+        .b_MRP label,
+        .bo_name label,
+        .bo_MRP label,
+        .author label,
+        .publisher label,
+        .quantity_b label,
+        .barcode_b label,
+        .pets-spayed-neutered label,
+        .type_b label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .radio-container {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: 4px;
+            display: inline-block;
+            padding: 5px;
+        }
+
+        .radio-container label {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 2px;
+            display: inline-block;
+            line-height: 26px;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            transition: 0.1s all ease-in-out;
+            width: 80px;
+        }
+
+        .radio-container input[type="radio"] {
+            display: none;
+        }
+
+        .radio-container input[type="radio"]:checked+label {
+            background: #f7b1ab;
+            border: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .type_b {
+            margin-bottom: 28px;
+        }
+
+        #l1,
+        #l2 {
+            margin-bottom: 25px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #E0E0E0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ENTER SELLER STOCK DETAILS</h1>
+    <div class="tabs">
+        <input type="radio" id="tab1" name="tab-control" checked>
+        <input type="radio" id="tab2" name="tab-control">
+        <input type="radio" id="tab3" name="tab-control">
+        <ul>
+            <li title="Bags">
+                <label for="tab1" role="button">
+                    <br><span>BAGS</span></label>
+            </li>
+            <li title="Books">
+                <label for="tab2" role="button">
+                    <br><span>BOOKS</span></label>
+            </li>
+            <li title="Stationary">
+                <label for="tab3" role="button">
+                    <br><span>STATIONARY</span></label>
+            </li>
+        </ul>
+        <div class="slider">
+            <div class="indicator"></div>
+        </div>
+        <div class="content">
+            <section class="bags_tab">
+                <div class="signup-container">
+                    <div class="left-container">
+                        <h1 class="head">
+                            <b>BAGS</b>
+                        </h1>
+                        <div class="bags"> <img src="../Project/img/backpacks.jpg" /> </div>
+                    </div>
+                    <div class="right-container">
+                        <header>
+                            <h1>Enter bag stock details.</h1>
+                            <form action="./php/upload_b.php" method="post">
+                                <div class="set">
+                                    <div class="brand_b">
+                                        <label for="brand_b">Brand Name</label>
+                                        <input type="text" id="brand_b" placeholder="Eg. Skybags" name="brand_b"
+                                            autofocus required>
+                                    </div>
+                                    <div class="b_MRP">
+                                        <label for="b_MRP">MRP</label>
+                                        <input id="b_MRP" name="b_MRP" placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                                <div class="set">
+                                    <div class="barcode_b">
+                                        <label for="barcode_b">Barcode No.</label>
+                                        <input id="barcode_b" name="barcode_b" placeholder="" type="number" required>
+                                    </div>
+                                    <div class="quantity_b">
+                                        <label for="quantity_b">Quantity</label>
+                                        <input id="quantity_b" name="quantity_b" placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                                <div class="type_b">
+                                    <label for="type_b">Bag Type</label>
+                                    <div class="radio-container">
+                                        <input id="pet-weight-0-25" name="type_b" type="radio" value="Backpack">
+                                        <label for="pet-weight-0-25">Backpack</label>
+                                        <input id="pet-weight-25-50" name="type_b" type="radio" value="Rucksack">
+                                        <label for="pet-weight-25-50">Rucksack</label>
+                                        <input id="pet-weight-50-100" name="type_b" type="radio" value="Office">
+                                        <label for="pet-weight-50-100">Office</label>
+                                        <input id="pet-weight-100-plus" name="type_b" type="radio" value="Laptop">
+                                        <label for="pet-weight-100-plus">Laptop</label>
+                                    </div>
+                                </div>
+
+                                <input type="submit" value="Upload">
+
+
+
+
+                            </form>
+                            <form action="./homepage.html">
+                                <button type="submit" formaction="homepage.html"
+                                    style="width: 100px; margin-left: 234px; 
+                                padding-top: 24px; padding-bottom: 11px; padding-left: 20px; padding-right: 20px; border: none;border-radius: 3px;"><img
+                                        src="./img/home.png" style="height: 3.4%; width: 2.2%; position: absolute;     top: 618px;
+                                    left: 709px;"><a href="../Project/homepage.html"></a>
+                                </button>
+                            </form>
+                        </header>
+                    </div>
+                </div>
+            </section>
+            <section class="books_tab">
+                <div class="signup-container">
+                    <div class="left-container">
+                        <h1 class="head">
+                            <b>BOOKS</b>
+                        </h1>
+                        <div class="books"> <img src="../Project/img/books.jpg" /> </div>
+                    </div>
+                    <div class="right-container">
+                        <header>
+                            <h1>Enter book stock details.</h1>
+                            <form action="./php/upload_bo.php" method="post">
+                                <div class="set">
+                                    <div class="bo_name">
+                                        <label for="bo_name">Book Name</label>
+                                        <input type="text" id="bo_name" placeholder="Eg. Hamlet" name="bo_name"
+                                            autofocus required>
+                                    </div>
+                                    <div class="bo_MRP">
+                                        <label for="bo_MRP">MRP</label>
+                                        <input id="bo_MRP" name="bo_MRP" placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                                <div class="set">
+                                    <div class="author">
+                                        <label for="author">Author</label>
+                                        <input id="author" name="author" placeholder="" type="text" required>
+                                    </div>
+                                    <div class="publisher">
+                                        <label for="publisher">Publisher</label>
+                                        <input id="publisher" name="publisher" placeholder="" type="text" required>
+                                    </div>
+                                </div>
+                                <div class="set" id="l1">
+                                    <div class="barcode_bo">
+                                        <label for="bo_barcode">Barcode No.</label>
+                                        <input id="bo_barcode" name="bo_barcode" placeholder="" type="number" required>
+                                    </div>
+                                    <div class="quantity_bo">
+                                        <label for="quantity_bo">Quantity</label>
+                                        <input id="quantity_bo" name="quantity_bo" placeholder="" type="number"
+                                            required>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Upload">
+
+                            </form>
+                            <form action="./homepage.html">
+                                <button type="submit" formaction="homepage.html"
+                                    style="width: 100px; margin-left: 234px; 
+                                padding-top: 24px; padding-bottom: 11px; padding-left: 20px; padding-right: 20px; border: none;border-radius: 3px;"><img
+                                        src="./img/home.png" style="height: 3.4%; width: 2.2%; position: absolute;     top: 618px;
+                                    left: 709px;"><a href="../Project/homepage.html"></a>
+                                </button>
+                            </form>
+                        </header>
+                    </div>
+                </div>
+            </section>
+            <section class="stat_tab">
+                <div class="signup-container">
+                    <div class="left-container">
+                        <h1 class="head">
+                            <b>STATIONARY</b>
+                        </h1>
+                        <div class="books"> <img src="../Project/img/stationary.jpg" /> </div>
+                    </div>
+                    <div class="right-container">
+                        <header>
+                            <h1>Enter stationary stock details.</h1>
+                            <form action="./php/upload_s.php" method="post">
+                                <div class="set">
+                                    <div class="s_name">
+                                        <label for="s_name">Stationary Name</label>
+                                        <input type="text" id="s_name" placeholder="Eg. Pen, Pencil, Scissors"
+                                            name="s_name" autofocus required>
+                                    </div>
+                                    <div class="s_MRP">
+                                        <label for="s_MRP">MRP</label>
+                                        <input id="s_MRP" name="s_MRP" placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                                <div class="set">
+                                    <div class="brand_s">
+                                        <label for="brand_s">Brand</label>
+                                        <input id="brand_s" name="brand_s" placeholder="" type="text" required>
+                                    </div>
+                                    <div class="s_type">
+                                        <label for="s_type">Type</label>
+                                        <input id="s_type" name="s_type" placeholder="E.g. Gel/Ball" type="text"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="set" id="l2">
+                                    <div class="barcode_s">
+                                        <label for="barcode_s">Barcode No.</label>
+                                        <input id="barcode_s" name="barcode_s" placeholder="" type="number" required>
+                                    </div>
+                                    <div class="quantity_s">
+                                        <label for="quantity_s">Quantity</label>
+                                        <input id="quantity_s" name="quantity_s" placeholder="" type="number" required>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Upload">
+
+
+                            </form>
+                            <form action="./homepage.html">
+                                <button type="submit" formaction="homepage.html"
+                                    style="width: 100px; margin-left: 234px; 
+                                padding-top: 24px; padding-bottom: 11px; padding-left: 20px; padding-right: 20px; border: none;border-radius: 3px;"><img
+                                        src="./img/home.png" style="height: 3.4%; width: 2.2%; position: absolute;     top: 618px;
+                                    left: 709px;"><a href="../Project/homepage.html"></a>
+                                </button>
+                            </form>
+                        </header>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
